@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const { createToDo, updateToDo } = require('./types')
 
@@ -31,8 +32,8 @@ app.put('/completed', (req,res)=> {
     }
 })
 
-const PORT = 3000
+const port = process.env.PORT
 
-app.listen(PORT, () => {
-    console.log('server started on port 3000');
+app.listen(port, () => {
+    console.log('server started on port ' + port);
 })
