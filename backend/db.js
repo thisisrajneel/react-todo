@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 mongoose,mongoose.connect(process.env.mongoDBString)
 
-const todoSchema = mongoose.Schema({
+const todoSchema = new mongoose.Schema({
     title: String,
     description: String
 })
