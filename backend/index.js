@@ -37,7 +37,7 @@ app.get('/todos', async (req,res)=> {
     })
 })
 
-app.put('/completed', (req,res)=> {
+app.put('/completed', async (req,res)=> {
     const createPayLoad = req.body
     const parsedPayLoad = updateToDo.safeParse(createPayLoad)
 
@@ -46,11 +46,17 @@ app.put('/completed', (req,res)=> {
             message : 'you sent the wrong inputs'
         })
     } else {
-        const data = ToDo.updateOne({
+        const data = await ToDo.updateOne({
             _id : req.body.id
         }, {
             completed : true
         })
+        console.log(data);
+        if(data) {
+            res.json({
+                message: 'marked todo as complete'
+            })
+        }
     }
 })
 
