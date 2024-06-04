@@ -2,10 +2,12 @@ require('dotenv').config()
 const express = require('express')
 const { createToDo, updateToDo } = require('./types')
 const { ToDo } = require('./db')
+const cors = require('cors')
 
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 app.post('/todo', async (req,res)=> {
     const createPayLoad = req.body
@@ -62,6 +64,6 @@ app.put('/completed', async (req,res)=> {
 
 const port = process.env.PORT
 
-app.listen(port, () => {
+app.listen(port,  () => {
     console.log('server started on port ' + port);
 })
